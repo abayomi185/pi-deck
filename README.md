@@ -9,9 +9,9 @@ Pi-Deck is intended to be a custom device that sits beside a main computer that 
 -Raspberry Pi Zero W  
 -Elecrow 5 inch Capacitive Display  
 -Custom PCB  
-	-Outemu Brown switches x6  
-	-10K resistor (for pull up) x6  
-	-RGB LED (3mm or cherry compatible) x6  
+ - Outemu Brown switches x6  
+ - 10K resistor (for pull up) x6  
+ - RGB LED (3mm or cherry compatible) x6  
 -USB-C Breakout Board  
 -Mini HDMI to HDMI cable  
 -USB OTG Cable x2  
