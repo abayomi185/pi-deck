@@ -16,7 +16,7 @@ tray.setVisible(True)
 # Creating the options 
 menu = QMenu()
 option1 = QAction("Start Server")
-option1.triggered.connect(testFunction)
+# option1.triggered.connect(testFunction)
 option2 = QAction("Stop Server") 
 menu.addAction(option1)
 menu.addAction(option2)
