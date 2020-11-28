@@ -1,7 +1,7 @@
 import sys
 from sys import setdlopenflags
 
-from server import *
+# from server import *
 
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 
 import socket
@@ -10,7 +11,7 @@ PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
 #     print("This is a test")
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
+    s.bind(('', PORT))
     s.listen()
     conn, addr = s.accept()
     with conn:
