@@ -12,9 +12,9 @@ class ServerTrayApp():
     # Create a Qt application
     self.app = QApplication(sys.argv)
     
-    icon = QIcon("icon.png")
-    self.greenIndicator = QIcon("indicator-green.png")
-    self.orangeIndicator = QIcon("indicator-orange.png")
+    icon = QIcon("./images/icon.png")
+    self.greenIndicator = QIcon("./images/indicator-green.png")
+    self.orangeIndicator = QIcon("./images/indicator-orange.png")
     menu = QMenu()
     
     self.statusIndicator = menu.addAction(self.orangeIndicator, "Status: Stopped")
