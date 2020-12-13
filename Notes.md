@@ -1,0 +1,1 @@
+actions.json holds a list of available functions/actions that can be called

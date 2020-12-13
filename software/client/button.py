@@ -1,35 +1,29 @@
-import pigpio
+import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 import time
-
-pi = pigpio.pi()
 
 class Buttons():
 
-  def __init__(self, user_pins):
+  def __init__(self, user_pins):    
+    GPIO.setwarnings(False) # Ignore warning for now
+    GPIO.setmode(GPIO.BCM) # Use physical pin numbering
+    
     self.pins = user_pins
     # print(self.pins)
     self.init_pins()
 
   def init_pins(self):
     for x in range(0, len(self.pins)):
-      pi.set_mode(self.pins[x], pigpio.INPUT)
-      pi.set_pull_up_down(self.pins[x], pigpio.PUD_DOWN)
-      # pi.event_callback(self.pins[x], self.btn_callback)
-  
-  def btn_callback(self):
-    print("Button pressed")
+      GPIO.setup(self.pins[x], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+      GPIO.add_event_detect(self.pins[x], GPIO.RISING, callback=self.btn_callback, 
+                                  bouncetime=200)
+
+  def btn_callback(self, channel):
+    print('button pressed {}'.format(channel))
 
 def main():
-  # pins = [23, 24, 25, 1, 12, 16]
-  pins = [23, 24, 25, 26, 12, 16]
+  pins = [26, 16, 12, 25, 24, 23]
   b = Buttons(pins)
-  pi.event_callback(23, print("press"))
-
   input("Press enter to exit ;)")
-
-  # while True:
-  #   print(bin(pi.read_bank_1()))
-  #   time.sleep(1)
 
 if __name__ == "__main__":
   main()

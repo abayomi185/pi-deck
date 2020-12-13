@@ -1,0 +1,5 @@
+py2app
+PyAutoGUI
+PyQt5
+python-socketio
+eventlet
