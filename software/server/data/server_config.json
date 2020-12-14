@@ -1,3 +1,4 @@
 {
-    
+    "server_port": 5000,
+    "log_ouput": false
 }
