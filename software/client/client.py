@@ -1,6 +1,6 @@
 import socketio
 import json
-from button import Buttons
+from btn_input import Buttons
 
 sio = socketio.Client()
 
@@ -45,6 +45,8 @@ def start_client():
 
     sio.connect(client_config["server_address"], headers=client_config["headers"])
 
+def reconnect():
+    sio.connect(client_config["server_address"], headers=client_config["headers"])
 
 if __name__ == "__main__":
     # sio.connect(client_config["server_address"], headers=client_config["headers"])

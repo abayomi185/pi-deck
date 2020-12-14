@@ -13,21 +13,27 @@ class Buttons():
   def __init__(self, user_pins):    
     GPIO.setwarnings(False) # Ignore warning for now
     GPIO.setmode(GPIO.BCM) # Use physical pin numbering
-    
-    self.pins = user_pins
-    # print(self.pins)
-    # self.callback = callback_func
+
+    # self.pins2 = []
+    # for x in range(len(user_pins)):
+    #   self.pins2.append(Pin(user_pins[x]))
+
+    self.pins = {}
+
+    for x in range(len(user_pins)):
+      self.pins.setdefault(user_pins[x], Pin(user_pins[x]))
+
     self.init_pins()
 
   def init_pins(self):
-    for x in range(0, len(self.pins)):
-      GPIO.setup(self.pins[x], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    for key in self.pins:
+      GPIO.setup(key, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
       # GPIO.add_event_detect(self.pins[x], GPIO.RISING, callback=send_input_to_client, 
       #                             bouncetime=200)
 
   def set_pin_callback(self, callback_func):
-    for x in range(0, len(self.pins)):
-      GPIO.add_event_detect(self.pins[x], GPIO.RISING, callback=callback_func, 
+    for key in self.pins:
+      GPIO.add_event_detect(key, GPIO.RISING, callback=callback_func, 
                                   bouncetime=200)
 
 def send_input_to_client(channel):
