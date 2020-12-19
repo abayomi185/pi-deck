@@ -1,12 +1,12 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 import time
 
-class Pin():
+class Pin:
   
   def __init__(self, pin_number):
       self.pin = pin_number
       self.is_active = False
-  
+      self.is_virtual = False
 
 class Buttons():
 
@@ -36,9 +36,9 @@ class Buttons():
       GPIO.add_event_detect(key, GPIO.RISING, callback=callback_func, 
                                   bouncetime=200)
 
-def send_input_to_client(channel):
-    print('button pressed {}'.format(channel))
-    client.send_input_key_event(channel)
+  def retrieve_values(self, channel):
+    return (self.pins[channel].pin, self.pins[channel].is_active, self.pins[channel].is_virtual)
+
 
 def main():
   pins = [26, 16, 12, 25, 24, 23]
