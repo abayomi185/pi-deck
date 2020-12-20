@@ -1,0 +1,42 @@
+#:include otherfile.kv
+#:include otherfile.kv
+
+WindowManager:
+    MainWindow:
+    SecondWindow:
+
+
+
+<MainWindow>:
+    #How it's called moving in between windows
+    name: "main"
+
+    GridLayout:
+        cols:1
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Password: "
+
+            TextInput:
+                id: passw
+                multiline: False
+
+        Button:
+            text: "Submit"
+            on_release:
+                app.root.current = "second" #Name of window
+                root.manager.transition.direction = "left"
+            always_release: True
+
+
+<SecondWindow>:
+    name: "second"
+
+    Button:
+        text: "Go Back"
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"

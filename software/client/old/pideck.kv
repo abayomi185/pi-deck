@@ -1,0 +1,23 @@
+<HomeScreen>
+    
+    #Global Variables
+    name: kvname
+    #Right side is variable to use in this
+    #Left side is variable in pyton
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+        GridLayout:
+            cols: 2 
+            Label:
+                text: "Pi Deck"
+            TextInput:
+                id: kvname
+                multinline: False
+        Button:
+            text: "Submit"
+            #Call function in HomeScreen Class
+            on_press: root.btn()
+            #Call function in PiDeck Class
+            on_press: app.btn2()

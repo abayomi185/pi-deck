@@ -1,0 +1,15 @@
+#Doing it this way influences all other instances of these classes
+
+<Button>:
+    font_size: 40
+    color: 0.3,0.6,0.7,1
+    size_hint: 0.3, 0.5
+
+<FloatLayout>:
+    Button:
+        pos_hint: {"x":0, "top":1}
+        text: "Tech"
+    
+    Button:
+        pos_hint: {"x":0.5, "top":0.5}
+        text: "Yomi"

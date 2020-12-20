@@ -5,8 +5,8 @@ class Pin:
   
   def __init__(self, pin_number):
       self.pin = pin_number
-      self.is_active = False
       self.is_virtual = False
+      self.is_active = False
 
 class Buttons():
 
@@ -21,6 +21,7 @@ class Buttons():
     self.pins = {}
 
     for x in range(len(user_pins)):
+      #Assign pins into dictionary of Pin Classes using setdefault
       self.pins.setdefault(user_pins[x], Pin(user_pins[x]))
 
     self.init_pins()
@@ -37,7 +38,7 @@ class Buttons():
                                   bouncetime=200)
 
   def retrieve_values(self, channel):
-    return (self.pins[channel].pin, self.pins[channel].is_active, self.pins[channel].is_virtual)
+    return (self.pins[channel].pin, self.pins[channel].is_virtual, self.pins[channel].is_active)
 
 
 def main():
