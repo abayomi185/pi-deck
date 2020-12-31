@@ -1,4 +1,4 @@
 {
     "server_port": 5000,
-    "log_ouput": false
+    "log_ouput": true
 }
