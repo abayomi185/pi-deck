@@ -69,7 +69,10 @@ class PiDeckApp(MDApp):
   color_black = (0, 0, 0, 0)
   color_blue = (0.01, 0.66, 0.96, 1)
 
-
+  def start_scene(self, *args):
+    pi_client = Client()
+    pi_client.start_client()
+    print("Client Started")
 
   def build(self):
     sm = ScreenManager()

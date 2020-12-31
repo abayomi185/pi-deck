@@ -12,6 +12,23 @@
     title: "Pi-Deck"
     pos_hint: {"x":0.0, "top":0.99}
 
+  #Power/Restart Button
+  BoxLayout:
+    orientation:"horizontal"
+    size_hint: 0.17, 0.13
+    pos_hint: {"right":1.0, "top":0.99}
+
+    MDIconButton:
+      icon: "img/power.png"
+      size_hint: 0.5, 1.0
+      always_release: True
+
+    MDIconButton:
+      icon: "img/reload.png"
+      size_hint: 0.5, 1.0
+      always_release: True
+
+
   #Left Label box
   GridLayout:
     cols: 1
@@ -95,6 +112,7 @@
 
   #Start Scene Button
   MDRaisedButton:
+    id: start_scene_btn
     size_hint: 0.4, 0.175
     pos_hint: {"x":0.52, "y":0.15}
 
@@ -102,44 +120,11 @@
     font_size: 26
 
     on_release:
+      app.start_scene()
       app.root.current = "select" #Name of window
       root.parent.manager.transition.direction = "left"
     always_release: True
 
-  #Power Button
-  # MDIconButton:
-  #   size_hint: 0.1, 0.13
-  #   pos_hint: {"right":1.0, "top":0.99}
-  #   icon: "img/power.png"
 
-  #   canvas.before:
-  #     Color:
-  #       rgba: app.color_blue
-  #     Rectangle:
-  #       size: self.size
-  #       pos: self.pos
 
-  BoxLayout:
-    orientation:"horizontal"
-    size_hint: 0.2, 0.13
-    pos_hint: {"right":1.0, "top":0.99}
-
-    canvas.before:
-      Color:
-        rgba: app.color_blue
-      Rectangle:
-        size: self.size
-        pos: self.pos
-
-    MDIconButton:
-      icon: "img/power.png"
-      size_hint: 0.5, 1.0
-      always_release: True
-
-    MDIconButton:
-      icon: "img/reload.png"
-      size_hint: 0.5, 1.0
-      always_release: True
-
-  #Restart/Reload Button
   
