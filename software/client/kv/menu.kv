@@ -1,0 +1,145 @@
+<MainMenuLayout@FloatLayout>:
+
+  canvas:
+    Color:
+      rgb: [.1, .1, .1]
+    Rectangle:
+      pos: self.pos
+      size: self.size
+
+  #ToolBar
+  MDToolbar:
+    title: "Pi-Deck"
+    pos_hint: {"x":0.0, "top":0.99}
+
+  #Left Label box
+  GridLayout:
+    cols: 1
+    size_hint: 0.4, 0.36
+    pos_hint: {"x":0.08, "y":0.40}
+
+    canvas.before:
+      Color:
+        rgba: app.color_black
+      Rectangle:
+        size: self.size
+        pos: self.pos
+      Color:
+        rgba: app.color_blue
+      Line:
+        width: 1.2
+        rectangle: self.x, self.y, self.width, self.height
+
+    MDLabel:
+      text: "Scene Selected:"
+      theme_text_color: "Custom"
+      text_color: app.color_white
+      halign: "center"
+      font_style: "H5"
+    
+    MDLabel:
+      id: scene_select_label
+      text: "Scene Selected2:"
+      theme_text_color: "Custom"
+      text_color: app.color_white
+      halign: "center"
+      font_style: "H5"
+
+
+  #Right Label box
+  GridLayout:
+    cols: 1
+    size_hint: 0.4, 0.36
+    pos_hint: {"x":0.52, "y":0.40}
+
+    canvas.before:
+      Color:
+        rgba: app.color_black
+      Rectangle:
+        size: self.size
+        pos: self.pos
+      Color:
+        rgba: app.color_blue
+      Line:
+        width: 1.2
+        rectangle: self.x, self.y, self.width, self.height
+
+    MDLabel:
+      text: "Connection Status:"
+      theme_text_color: "Custom"
+      text_color: app.color_white
+      halign: "center"
+      font_style: "H5"
+
+    MDLabel:
+      id: connection_label
+      text: "Connected!"
+      theme_text_color: "Custom"
+      text_color: app.color_white
+      halign: "center"
+      font_style: "H5"
+
+  #Select Scene Button
+  MDRectangleFlatButton:
+    size_hint: 0.4, 0.175
+    pos_hint: {"x":0.08, "y":0.15}
+
+    text: "Select Scene"
+    # text: app.root.scene_selected
+    font_size: 26
+
+    on_release:
+      app.root.current = "select" #Name of window
+      root.parent.manager.transition.direction = "up"
+    always_release: True
+
+  #Start Scene Button
+  MDRaisedButton:
+    size_hint: 0.4, 0.175
+    pos_hint: {"x":0.52, "y":0.15}
+
+    text: "Start Scene"
+    font_size: 26
+
+    on_release:
+      app.root.current = "select" #Name of window
+      root.parent.manager.transition.direction = "left"
+    always_release: True
+
+  #Power Button
+  # MDIconButton:
+  #   size_hint: 0.1, 0.13
+  #   pos_hint: {"right":1.0, "top":0.99}
+  #   icon: "img/power.png"
+
+  #   canvas.before:
+  #     Color:
+  #       rgba: app.color_blue
+  #     Rectangle:
+  #       size: self.size
+  #       pos: self.pos
+
+  BoxLayout:
+    orientation:"horizontal"
+    size_hint: 0.2, 0.13
+    pos_hint: {"right":1.0, "top":0.99}
+
+    canvas.before:
+      Color:
+        rgba: app.color_blue
+      Rectangle:
+        size: self.size
+        pos: self.pos
+
+    MDIconButton:
+      icon: "img/power.png"
+      size_hint: 0.5, 1.0
+      always_release: True
+
+    MDIconButton:
+      icon: "img/reload.png"
+      size_hint: 0.5, 1.0
+      always_release: True
+
+  #Restart/Reload Button
+  

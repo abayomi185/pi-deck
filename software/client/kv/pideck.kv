@@ -1,31 +1,17 @@
 #:include ./kv/button.kv
 #:include ./kv/scene.kv
+#:include ./kv/menu.kv
+
 
 # Select scene is a slide up
 # notice when selecting scene is a pop-up. Validity check
 
-WindowManager:
-  MainMenu:
-  SelectMenu:
-  SceneMenu:
-
-
 <MainMenu>:
-  #How it's called moving in between windows
-  name: "main"
+  id: main_menu
 
-  FloatLayout:
-
-    Button:
-      text: "Submit"
-      on_release:
-        app.root.current = "select" #Name of window
-        root.manager.transition.direction = "left"
-      always_release: True
-
+  MainMenuLayout:
 
 <SelectMenu>:
-  name: "select"
 
   Button:
     text: "Go Back"
@@ -35,4 +21,3 @@ WindowManager:
 
 
 <SceneMenu>:
-  name: "scene"
