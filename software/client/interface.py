@@ -10,6 +10,9 @@ import client
 
 import kivy
 import json
+import os
+from subprocess import call
+from multiprocessing import Process
 
 # from kivy.app import App
 from kivymd.app import MDApp
@@ -17,6 +20,9 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import StringProperty
+
+from kivymd.uix.button import MDFlatButton
+from kivymd.uix.dialog import MDDialog
 
 # from kivy.uix.gridlayout import GridLayout
 # from kivy.uix.label import Label
@@ -69,10 +75,7 @@ class PiDeckApp(MDApp):
   color_black = (0, 0, 0, 0)
   color_blue = (0.01, 0.66, 0.96, 1)
 
-  def start_scene(self, *args):
-    pi_client = Client()
-    pi_client.start_client()
-    print("Client Started")
+  dialog = None
 
   def build(self):
     sm = ScreenManager()
@@ -81,6 +84,49 @@ class PiDeckApp(MDApp):
     sm.add_widget(SceneMenu(name='scene'))
 
     return sm
+
+  def start_client(self):
+    pi_client = client.Client()
+    pi_client.start_client()
+
+  def start_scene(self, *args):
+    # try:
+      # pi_client = client.Client()
+      # pi_client.start_client()
+
+    print("starting Socketio Client as process...")
+    global client_process
+    client_process = Process(target=self.start_client) # assign Flask to a process
+    client_process.daemon = True
+    client_process.start()  #launch Flask as separate process
+
+    # except Exception as inst:
+    #   #Dialog box here
+    #   print(inst)
+    # else:
+    #   print("Client Started")
+
+  def poweroff(self, *args):
+    call("sudo nohup shutdown -h now", shell=True)
+
+  def restart(self, *args):
+    os.execv(sys.argv[0], sys.argv)
+
+  def show_alert_dialog(self):
+    if not self.dialog:
+      self.dialog = MDDialog(
+        text="Are you sure you want to shutdown?",
+        buttons=[
+          MDFlatButton(
+            text="CANCEL", text_color=self.theme_cls.primary_color, always_release=True
+          ),
+          MDFlatButton(
+            text="SHUTDOWN", text_color=self.theme_cls.primary_color, always_release=True
+          ),
+        ],
+      )
+    self.dialog.open()
+
 
 def other(self):
     pass

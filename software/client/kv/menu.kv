@@ -21,12 +21,15 @@
     MDIconButton:
       icon: "img/power.png"
       size_hint: 0.5, 1.0
-      always_release: True
+      # always_release: True
+      on_release:
+        # app.poweroff()
+        app.show_alert_dialog()
 
     MDIconButton:
       icon: "img/reload.png"
       size_hint: 0.5, 1.0
-      always_release: True
+      # always_release: True
 
 
   #Left Label box
@@ -108,7 +111,7 @@
     on_release:
       app.root.current = "select" #Name of window
       root.parent.manager.transition.direction = "up"
-    always_release: True
+    # always_release: True
 
   #Start Scene Button
   MDRaisedButton:
@@ -121,9 +124,9 @@
 
     on_release:
       app.start_scene()
-      app.root.current = "select" #Name of window
-      root.parent.manager.transition.direction = "left"
-    always_release: True
+      # app.root.current = "select" #Name of window
+      # root.parent.manager.transition.direction = "left"
+    # always_release: True
 
 
 

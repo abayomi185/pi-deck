@@ -1,6 +1,8 @@
 import socketio
 import json
 from btn_input import Buttons
+from btn_input import gpio_cleanup
+import time
 
 sio = socketio.Client()
 
@@ -8,6 +10,7 @@ class Client:
 
     def __init__(self):
         self.btn = None
+        self.connected = False
 
     def send_input_key_event(self, channel):
 
@@ -36,11 +39,24 @@ class Client:
         with open('./data/client_config.json') as f:
             client_config = json.load(f)
 
-        sio.connect(client_config["server_address"], headers=client_config["headers"])
+        # sio.connect(client_config["server_address"], headers=client_config["headers"])
+        attempts = 0
+        while not self.connected and attempts < 3:
+            try:
+                # socket.connect("website url", namespaces=['/pi'])
+                sio.connect(client_config["server_address"], headers=client_config["headers"])
+            except socketio.exceptions.ConnectionError as err:
+                print("ConnectionError: ", err)
+                print("trying again in a few seconds...")
+                gpio_cleanup()
+                attempts+=1
+                time.sleep(5)
+            else:
+                print("Connected!")
+                self.connected = True
 
     def reconnect(self):
         sio.connect(client_config["server_address"], headers=client_config["headers"])
-
 
 @sio.event
 def connect():
@@ -64,7 +80,6 @@ def disconnect():
 # Old implementation
 # def retrieve_values(object):
 #   return (object.pin, object.is_active, object.is_virtual)
-
 
 if __name__ == "__main__":
     # sio.connect(client_config["server_address"], headers=client_config["headers"])

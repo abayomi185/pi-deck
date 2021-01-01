@@ -1,6 +1,9 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 import time
 
+def gpio_cleanup():
+  GPIO.cleanup()
+
 class Pin:
   
   def __init__(self, pin_number):
