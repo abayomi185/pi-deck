@@ -34,10 +34,15 @@ def connect(sid, environ):
 def disconnect(sid):
     print('disconnect ', sid)
 
+# @sio.event
+# def my_message(sid, data):
+#     # session = sio.get_session(sid)
+#     print('Received data from {}, {}'.format(sid, data))
+
 @sio.event
-def my_message(sid, data):
+def received_input(sid, data):
     # session = sio.get_session(sid)
-    print('Received data from {}, {}'.format(sid, data))
+    print('Received from {}, {}'.format(sid, data))
 
 
 def start_server():
@@ -45,5 +50,5 @@ def start_server():
 
 
 if __name__ == "__main__":
-    eventlet.wsgi.server(eventlet.listen(('', server_config["server_port"])), app, log_output=server_config["log_ouput"])
+    start_server()
     # eventlet.wsgi.server(eventlet.listen(('', 5000)), app)
