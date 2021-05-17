@@ -1,5 +1,7 @@
 # Pi-Deck
 
+See my blog for images and updates; [yomis.blog](https://yomis.blog/pi-deck-teaser)
+
 Ongoing project to create a streamdeck like device powered by a raspberry pi.
 
 Pi-Deck is intended to be a custom device that sits beside a main computer that can be configured to send single actions or a chain of actions to the main computer.
