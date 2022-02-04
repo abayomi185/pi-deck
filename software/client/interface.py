@@ -121,7 +121,7 @@ class PiDeckApp(MDApp):
             text="CANCEL", text_color=self.theme_cls.primary_color, always_release=True
           ),
           MDFlatButton(
-            text="SHUTDOWN", text_color=self.theme_cls.primary_color, always_release=True
+            text="SHUTDOWN", text_color=self.theme_cls.primary_color, on_release=self.poweroff()
           ),
         ],
       )
